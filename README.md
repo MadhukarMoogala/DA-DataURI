@@ -76,7 +76,7 @@ Here is a quick reference chart explaining which characters are “safe” and w
 | Unsafe characters        | Includes the blank/empty space and `` " < > % { } \| \ ^ ` ``                                                                                                             | **YES**            |
 | ASCII Control characters | Includes the ISO-8859-1 (ISO-Latin) character ranges 00-1F hex (0-31 decimal) and 7F (127 decimal)                                                                        | **YES**            |
 | Non-ASCII characters     | Includes the entire “top half” of the ISO-Latin set 80-FF hex (128-255 decimal)                                                                                           | **YES**            |
-| All other characters     | Any character(s) not mentioned above should be [percent-encoded](https://pretty-rfc.herokuapp.com/RFC3986#percent-encoding).                                              | **YES**            |
+| All other characters     | Any character(s) not mentioned above should be [percent-encoded](https://datatracker.ietf.org/doc/html/rfc3986#section-2.1).                                              | **YES**            |
 
 ### What is base64 Encoding
 
@@ -169,9 +169,9 @@ The typical workitem to drive the activity is
 3. JSON data having unicode characters or non-ascii chacters.
    
    data `{"filename": "М_500_МСК_50 по границе.dwg"}` contains a Russian character, in this case either URL encode or base64 encode the entire JSON data is an accepted format for Design Automation.
-
+   
    UrlEncode : `{"fileName": "%d0%9c_500_%d0%9c%d0%a1%d0%9a_50%20%d0%bf%d0%be%20%d0%b3%d1%80%d0%b0%d0%bd%d0%b8%d1%86%d0%b5.dwg"}`
-
+   
     WorkItem
 
 ```json
