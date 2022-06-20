@@ -60,11 +60,9 @@ URI 's  includes certain components that are used as delimiting characters, thes
 
 ### Unreserved Characters
 
-Characters that are allowed in a URI but do not have a reserved purpose are called unreserved. These include uppercase and lowercase letters, decimal digits, hyphen, period, underscore, and tilde.
+Characters that are allowed in a URI but do not have a reserved purpose are called unreserved. These include uppercase and lowercase letters, decimal digits, hyphen, period, underscore, and tilde. 
 
-```json
-[~_.A-Za-z0-9]
-```
+`~_.A-Za-z0-9`
 
 ## Character Encoding Chart
 
@@ -90,43 +88,37 @@ Use this tool -
 
 ***NOTE Design Automation respects both `base64` as well as  `URL encode` data**
 
-
-
 For all the following examples, below is standard activity is called from different workitem payloads as per the context.
-
-
 
 Activity - `dataUrlActivity`
 
 ```json
 {
-	"id": "dataUrlActivity",
-	"commandLine": [
-		"$(engine.path)\\accoreconsole.exe /s $(settings[script].path)"
-	],
-	"parameters": {
-		"getJson": {
-			"verb": "get",
-			"description": "inline JSON data in url",
-			"required": true,
-			"localName": "mad.json"
-		},
-		"postJson": {
-			"verb": "post",
-			"description": "post params json data",
-			"required": true,
-			"localName": "mad.json"
-		}
-	},
-	"engine": "Autodesk.AutoCAD+24_1",
-	"description": "DataUrlTest",
-	"settings": {
-		"script": "(vl-directory-files nil \"*.json\" 0)\n"
-	}
+    "id": "dataUrlActivity",
+    "commandLine": [
+        "$(engine.path)\\accoreconsole.exe /s $(settings[script].path)"
+    ],
+    "parameters": {
+        "getJson": {
+            "verb": "get",
+            "description": "inline JSON data in url",
+            "required": true,
+            "localName": "mad.json"
+        },
+        "postJson": {
+            "verb": "post",
+            "description": "post params json data",
+            "required": true,
+            "localName": "mad.json"
+        }
+    },
+    "engine": "Autodesk.AutoCAD+24_1",
+    "description": "DataUrlTest",
+    "settings": {
+        "script": "(vl-directory-files nil \"*.json\" 0)\n"
+    }
 }
 ```
-
-
 
 Examples -
 
@@ -136,69 +128,67 @@ The typical workitem to drive the activity is
 
 ```json
 {
-	"arguments": {
-		"getJson": {
-			"url": "data:application/json,{\"filename\": \"test.dwg\"}",
-			"verb": "get",
-			"localName": "mad.json"
-		},
-		"postJson": {
-			"url": "https://dataurl.requestcatcher.com/",
-			"verb": "post",
-			"localName": "mad.json"
-		}
-	},
-	"activityId": "madstgacdio.stgexperiments+stg"
+    "arguments": {
+        "getJson": {
+            "url": "data:application/json,{\"filename\": \"test.dwg\"}",
+            "verb": "get",
+            "localName": "mad.json"
+        },
+        "postJson": {
+            "url": "https://dataurl.requestcatcher.com/",
+            "verb": "post",
+            "localName": "mad.json"
+        }
+    },
+    "activityId": "madstgacdio.stgexperiments+stg"
 }
 ```
 
-2.  JSON data having reserved characters.
+2. JSON data having reserved characters.
    
    data `{"filename": "!_25_!_test.dwg"}` contains  reserved characters `!`  which needs to be URL encoded.
    
    ```json
    {
-   	"arguments": {
-   		"getJson": {
-   			"url": "data:application/json,{\"filename\": \"%21_25_%21_test.dwg\"}",
-   			"verb": "get",
-   			"localName": "mad.json"
-   		},
-   		"postJson": {
-   			"url": "https://dataurl.requestcatcher.com/",
-   			"verb": "post",
-   			"localName": "mad.json"
-   		}
-   	},
-   	"activityId": "madstgacdio.stgexperiments+stg"
+      "arguments": {
+          "getJson": {
+              "url": "data:application/json,{\"filename\": \"%21_25_%21_test.dwg\"}",
+              "verb": "get",
+              "localName": "mad.json"
+          },
+          "postJson": {
+              "url": "https://dataurl.requestcatcher.com/",
+              "verb": "post",
+              "localName": "mad.json"
+          }
+      },
+      "activityId": "madstgacdio.stgexperiments+stg"
    }
    ```
 
 3. JSON data having unicode characters or non-ascii chacters.
    
    data `{"filename": "М_500_МСК_50 по границе.dwg"}` contains a Russian character, in this case either URL encode or base64 encode the entire JSON data is an accepted format for Design Automation.
-   
-   
-   
+
    UrlEncode : `{"fileName": "%d0%9c_500_%d0%9c%d0%a1%d0%9a_50%20%d0%bf%d0%be%20%d0%b3%d1%80%d0%b0%d0%bd%d0%b8%d1%86%d0%b5.dwg"}`
-   
+
     WorkItem
 
 ```json
 {
-	"arguments": {
-		"getJson": {
-			"url": "data:application/json,{\"filename\": \"%D0%9C_500_%D0%9C%D0%A1%D0%9A_50%20%D0%BF%D0%BE%20%D0%B3%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B5.dwg\"}",
-			"verb": "get",
-			"localName": "mad.json"
-		},
-		"postJson": {
-			"url": "https://dataurl.requestcatcher.com/",
-			"verb": "post",
-			"localName": "mad.json"
-		}
-	},
-	"activityId": "madstgacdio.stgexperiments+stg"
+    "arguments": {
+        "getJson": {
+            "url": "data:application/json,{\"filename\": \"%D0%9C_500_%D0%9C%D0%A1%D0%9A_50%20%D0%BF%D0%BE%20%D0%B3%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B5.dwg\"}",
+            "verb": "get",
+            "localName": "mad.json"
+        },
+        "postJson": {
+            "url": "https://dataurl.requestcatcher.com/",
+            "verb": "post",
+            "localName": "mad.json"
+        }
+    },
+    "activityId": "madstgacdio.stgexperiments+stg"
 }
 ```
 
@@ -210,19 +200,19 @@ The data in the URL `GET` request will first URL decode and written to JSON file
 
 ```json
 {
-	"arguments": {
-		"getJson": {
-			"url": "data:application/json;base64,eyJmaWxlbmFtZSI6ItCcXzUwMF/QnNCh0JpfNTAg0L/QviDQs9GA0LDQvdC40YbQtS5kd2cifQ==",
-			"verb": "get",
-			"localName": "mad.json"
-		},
-		"postJson": {
-			"url": "https://dataurl.requestcatcher.com",
-			"verb": "post",
-			"localName": "mad.json"
-		}
-	},
-	"activityId": "madstgacdio.stgexperiments+stg"
+    "arguments": {
+        "getJson": {
+            "url": "data:application/json;base64,eyJmaWxlbmFtZSI6ItCcXzUwMF/QnNCh0JpfNTAg0L/QviDQs9GA0LDQvdC40YbQtS5kd2cifQ==",
+            "verb": "get",
+            "localName": "mad.json"
+        },
+        "postJson": {
+            "url": "https://dataurl.requestcatcher.com",
+            "verb": "post",
+            "localName": "mad.json"
+        }
+    },
+    "activityId": "madstgacdio.stgexperiments+stg"
 }
 ```
 
@@ -257,25 +247,3 @@ console.log(base64);
 ```
 
 To summarize, data url is helpful scheme when you have small data that you would like embed inline without having the data to store behind any server storage space.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
