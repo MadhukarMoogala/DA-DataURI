@@ -1,5 +1,3 @@
-
-
 # Understanding Data URI scheme in Design Automation workflows.
 
 Applicable to all Design Automation Engines.
@@ -230,7 +228,7 @@ Exceprt from report.txt
 
 > [06/20/2022 12:40:48] Embedded resource [{"filename":"М_500_МСК_50 по границе.dwg"}] is saved as a file in 'Unicode' at: 'T:\Aces\Jobs\8bb8c2c80fa14e2a885777c863d8f308\mad.json'.
 
-In the codepen [Forge-DataUri-Test](https://codepen.io/madhukarmoogala/pen/qBxGWVB) I have rendered both `bas64`and `urlencode`JSON data.
+In the codepen [Forge-DataUri-Test](https://codepen.io/madhukarmoogala/pen/qBxGWVB) I have rendered both `bas64`and `urlencode` JSON data.
 
 Node.JS code
 
@@ -249,3 +247,11 @@ console.log(base64);
 ```
 
 To summarize, data url is helpful scheme when you have small data that you would like embed inline without having the data to store behind any server storage space.
+
+### License
+
+This sample is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](https://github.com/MadhukarMoogala/DA-DataURI/blob/main/LICENSE) file for full details.
+
+### Written by
+
+Madhukar Moogala, [Forge Partner Development](http://forge.autodesk.com)  @galakar
